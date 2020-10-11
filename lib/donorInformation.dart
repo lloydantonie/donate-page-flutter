@@ -167,7 +167,7 @@ class _DonorInformationState extends State<DonorInformation> {
                                           TextField(
                                             decoration: InputDecoration(
                                               border: InputBorder.none,
-                                              hintText: "You has been Donated!!"),
+                                              hintText: "You has been Donated!"),
                                             ),
                                     SizedBox(
                                       width: 320.0,
