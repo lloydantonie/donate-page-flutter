@@ -82,11 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: EdgeInsets.only(top: 50.0),
                     child: Container( height: MediaQuery.of(context).size.height - 100.0,
                         child: ListView(children: [
-                          _buildFoodItem('assets/plate1.png', 'Medicine', ''),
-                          _buildFoodItem('assets/plate2.png', 'Clothes', ''),
-                          _buildFoodItem('assets/plate3.png', 'Cash', ''),
-                          _buildFoodItem('assets/plate4.png', 'Food', ''),
-                          _buildFoodItem('assets/plate5.png', 'Others', '')
+                          _buildFoodItem('assets/plate1.png', 'Medicine'),
+                          _buildFoodItem('assets/plate2.png', 'Clothes'),
+                          _buildFoodItem('assets/plate3.png', 'Cash'),
+                          _buildFoodItem('assets/plate4.png', 'Food'),
+                          _buildFoodItem('assets/plate5.png', 'Others')
                         ])))
               ],
             ),
@@ -95,13 +95,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  Widget _buildFoodItem(String imgPath, String foodName, String price) {
+  Widget _buildFoodItem(String imgPath, String foodName) {
     return Padding(
         padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
         child: InkWell(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => DetailsPage(heroTag: imgPath, foodName: foodName, foodPrice: price)
+                  builder: (context) => DetailsPage(heroTag: imgPath, foodName: foodName)
               ));
             },
             child: Row(
@@ -131,14 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         fontWeight: FontWeight.bold
                                     )
                                 ),
-                                Text(
-                                    price,
-                                    style: TextStyle(
-                                        fontFamily: 'Montserrat',
-                                        fontSize: 15.0,
-                                        color: Colors.grey
-                                    )
-                                )
                               ]
                           )
                         ]

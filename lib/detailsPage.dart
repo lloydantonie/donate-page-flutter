@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'donorInformation.dart';
 
 class DetailsPage extends StatefulWidget {
 
@@ -14,7 +15,18 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  var selectedCard = 'WEIGHT';
+
+  int _counter = 1;
+  increment(){
+    setState(() {
+      _counter++;
+    });
+  }
+  decrement(){
+    setState(() {
+      _counter--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +42,7 @@ class _DetailsPageState extends State<DetailsPage> {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text('Details',
+          title: Text('Item Information',
               style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 25,
@@ -38,9 +50,13 @@ class _DetailsPageState extends State<DetailsPage> {
           centerTitle: true,
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.more_horiz),
-              onPressed: () {},
-              color: Colors.white,
+                icon: Icon(Icons.arrow_forward_ios),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return DonorInformation();
+                  }));
+                },
+                color: Colors.white
             )
           ],
         ),
@@ -59,7 +75,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           topRight: Radius.circular(45.0),
                         ),
                         color: Colors.white),
-                    height: MediaQuery.of(context).size.height - 100.0,
+                    height: MediaQuery.of(context).size.height - 10.0,
                     width: MediaQuery.of(context).size.width)),
             Positioned(
                 top: 30.0,
@@ -99,7 +115,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               InkWell(
-                                onTap: () {},
+                                onTap: decrement,
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -115,13 +131,13 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ),
                                 ),
                               ),
-                              Text('1',
+                              Text('$_counter',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontFamily: 'Montserrat',
                                       fontSize: 15.0)),
                               InkWell(
-                                onTap: () {},
+                                onTap: increment,
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -135,43 +151,41 @@ class _DetailsPageState extends State<DetailsPage> {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         )
                       ],
                     ),
-                    SizedBox(height: 50.0),
-                    Padding(
-                      padding: EdgeInsets.only(bottom:150.0),
-                      child: Container(
+                  ],
+                )),
+            Positioned(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                SizedBox(
+                height: 300.0,
+                ),
+                  Padding(
+                    padding: const EdgeInsets.all(65.0),
+                    child: TextField(
+                      maxLines: 10,
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                      decoration: InputDecoration(
+                        labelText: 'Item Description',
+                        enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors.orange,
+                            )),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0)
+                        )
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          height: 80.0,
-                          width: 250.0,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.orangeAccent,
-                                  style: BorderStyle.solid,
-                                  width: 1.0),
-                              borderRadius: BorderRadius.circular(50.0),
-                              color: Color(0xFFFF9100)),
-                          child: Center(
-                              child: Text('DONATE',
-                                  style: TextStyle(
-                                      fontFamily: 'Montserrat-ExtraBold',
-                                      color: Colors.white,
-                                      fontSize: 25.0))),
-                        )
-                      ],
-                    )
-                  ],
-                ))
-          ])
-        ]));
+                  ),
+          ]
+    )
+    )])
+    ]));
   }
 }
